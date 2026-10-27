@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a1d23" media="(prefers-color-scheme: dark)">
+  <title>Group Chat</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <p id="page-error" class="error banner" role="alert"></p>
+
+  <section id="login" class="login" hidden>
+    <form id="setup-form" class="login-card">
+      <h1 id="login-name" class="login-name">Group Chat</h1>
+      <label for="login-user">Name</label>
+      <input id="login-user" type="text" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false">
+      <label for="setup-code">Password</label>
+      <input id="setup-code" type="password" autocomplete="current-password" required>
+      <button type="submit" class="primary">Sign in</button>
+      <p id="login-error" class="error" role="alert"></p>
+    </form>
+  </section>
+
+  <section id="invite" class="login" hidden>
+    <form id="invite-form" class="login-card">
+      <h1 id="invite-heading" class="login-name">Join Group Chat</h1>
+      <p id="invite-welcome" class="hint"></p>
+      <label for="invite-user">Name</label>
+      <input id="invite-user" type="text" autocomplete="username" readonly>
+      <label for="invite-password">Password</label>
+      <input id="invite-password" type="password" autocomplete="new-password" minlength="12" maxlength="200" required>
+      <label for="invite-again">Type it again</label>
+      <input id="invite-again" type="password" autocomplete="new-password" minlength="12" maxlength="200" required>
+      <p class="hint">At least 12 characters. Your phone can suggest one and save it.</p>
+      <button type="submit" class="primary">Join</button>
+      <p id="invite-error" class="error" role="alert"></p>
+    </form>
+  </section>
+
+  <section id="chat" class="screen" hidden>
+    <header class="bar">
+      <div class="bar-title">
+        <h1 id="app-name">Group Chat</h1>
+        <p id="agent-summary" class="bar-sub"></p>
+      </div>
+      <div id="avatar-stack" class="stack" aria-hidden="true"></div>
+      <button id="open-agents" class="icon" type="button" aria-label="Agents">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </button>
+    </header>
+    <ol id="thread" class="thread" aria-live="polite"></ol>
+    <p id="chat-error" class="error" role="alert"></p>
+    <form id="composer" class="composer">
+      <textarea id="message" rows="1" maxlength="4000" placeholder="Message" aria-label="Message" required></textarea>
+      <button type="submit" class="send" aria-label="Send">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+      </button>
+    </form>
+  </section>
+
+  <section id="agents" class="screen" hidden>
+    <header class="bar">
+      <button id="close-agents" class="icon" type="button" aria-label="Back to the chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="bar-title"><h1>Agents</h1></div>
+    </header>
+    <div class="agents-body">
+      <p id="budget" class="hint"></p>
+      <ul id="member-list" class="members"></ul>
+      <div id="join-card" class="join" hidden>
+        <h2 id="join-title">Join card</h2>
+        <p class="hint">Copy this now. The link is shown only once. If an app asks for an API key, give it the key alone.</p>
+        <pre id="join-card-text"></pre>
+        <div class="row">
+          <button id="copy-card" type="button">Copy card</button>
+          <button id="copy-key" type="button">Copy key alone</button>
+          <button id="close-card" type="button" class="quiet">Done</button>
+        </div>
+      </div>
+      <form id="add-agent" class="add">
+        <input id="agent-name" placeholder="New agent's name" aria-label="New agent's name" pattern="[A-Za-z0-9_]{1,24}" maxlength="24" required>
+        <button type="submit">Add agent</button>
+      </form>
+      <h2 class="section-title">People</h2>
+      <ul id="people-list" class="members"></ul>
+      <div id="invite-panel" class="join" hidden>
+        <h2 id="invite-title">Invite link</h2>
+        <p class="hint">Send this link yourself. It works once, for 7 days. Whoever opens it first joins as this person.</p>
+        <pre id="invite-link-text"></pre>
+        <div class="row">
+          <button id="copy-invite" type="button">Copy link</button>
+          <button id="close-invite" type="button" class="quiet">Done</button>
+        </div>
+      </div>
+      <form id="add-person" class="add">
+        <input id="person-name" placeholder="New person's name" aria-label="New person's name" pattern="[A-Za-z0-9_]{1,24}" maxlength="24" required>
+        <button type="submit">Add person</button>
+      </form>
+      <button id="sign-out" type="button" class="quiet signout">Sign out</button>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: ai-group-chat
+    runtime: node
+    plan: starter
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /healthz
+    disk:
+      name: chat-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: 22.23.1
+      - key: DATA_DIR
+        value: /var/data
+      - key: APP_NAME
+        value: Group Chat
+      - key: OWNER_NAME
+        sync: false
+      - key: TIME_ZONE
+        value: UTC
+      - key: SETUP_CODE
+        generateValue: true
+      - key: DATA_KEY
+        generateValue: true

@@ -1,0 +1,35 @@
+{
+  "name": "ai-group-chat",
+  "version": "0.1.0",
+  "description": "A private group chat for you, the people you invite, and your AI agents, over MCP.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tderoussel/ai-group-chat.git"
+  },
+  "homepage": "https://github.com/tderoussel/ai-group-chat#readme",
+  "bugs": {
+    "url": "https://github.com/tderoussel/ai-group-chat/issues"
+  },
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0 <23"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning --import tsx src/main.ts",
+    "test": "NODE_OPTIONS=--disable-warning=ExperimentalWarning vitest run",
+    "typecheck": "tsc --noEmit",
+    "test-agent": "node --disable-warning=ExperimentalWarning --import tsx scripts/test-agent.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "tsx": "4.23.15",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "typescript": "5.9.3",
+    "vitest": "4.1.12"
+  }
+}

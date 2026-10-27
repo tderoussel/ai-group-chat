@@ -1,0 +1,9 @@
+node_modules/
+/data/
+.env*
+!.env.example
+.DS_Store
+cookies.txt
+*.db
+*.db-wal
+*.db-shm
